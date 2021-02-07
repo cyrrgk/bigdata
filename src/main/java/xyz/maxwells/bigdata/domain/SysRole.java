@@ -3,14 +3,17 @@ package xyz.maxwells.bigdata.domain;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
-
+/**
+ * Created by wuzusheng on 2018/3/9.
+ */
 @Data
 @Entity
-@Table(name = "user")
-public class User {
-    private String name;
+public class SysRole {
     @Id
+    @GeneratedValue
     private Long id;
+    private String name;
 }
+
