@@ -3,6 +3,7 @@ package xyz.maxwells.bigdata.exception;
 /**
  * Created by wuzusheng on 2018/3/9.
  */
+//错误码封装类
 public class ErrorMessage {
     private final String DEFAULT_CODE = "-1";
     private final String DEFAULT_MESSAGE = "系统异常，请联系管理员";
@@ -10,8 +11,8 @@ public class ErrorMessage {
     private String errorCode;
     private String errorMessage;
 
-    public ErrorMessage(String message) {
-
+    public ErrorMessage(BigdataException message) {
+            this.initMessage(message.getMessage());
     }
     public void initMessage(String errMsg){
         if (errMsg != null && !"".equals(errMsg)){

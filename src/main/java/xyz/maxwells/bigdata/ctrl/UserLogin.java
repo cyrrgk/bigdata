@@ -2,6 +2,8 @@ package xyz.maxwells.bigdata.ctrl;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.maxwells.bigdata.exception.BigdataException;
+
 /**
  * Created by wuzusheng on 2018/3/9.
  */
@@ -24,7 +26,8 @@ public class UserLogin {
         return "注销成功！";
     }
     @RequestMapping("/test")
-    public String test(){
-        return "test!";
+    public String test() throws BigdataException{
+        throw new BigdataException("123::error");
+//        return "test!";
     }
 }

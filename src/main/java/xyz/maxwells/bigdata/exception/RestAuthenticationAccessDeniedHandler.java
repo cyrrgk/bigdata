@@ -15,15 +15,15 @@ import java.io.PrintWriter;
  */
 
 
-/**
- * 403无权限配置
- */
+
+// 403无权限配置
+
 public class RestAuthenticationAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse resp, AccessDeniedException e) throws IOException, ServletException {
         resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json;charset=utf-8");
         PrintWriter writer = resp.getWriter();
-        writer.println(JSON.toJSONString(new RequestResult("你没有访问权限！")));
+        writer.println(JSON.toJSONString(new RequestResult(new BigdataException("bigdata_01_001::权限不足"))));
     }
 }

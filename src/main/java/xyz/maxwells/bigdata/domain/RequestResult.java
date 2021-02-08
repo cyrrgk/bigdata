@@ -1,5 +1,8 @@
 package xyz.maxwells.bigdata.domain;
 
+import xyz.maxwells.bigdata.exception.BigdataException;
+import xyz.maxwells.bigdata.exception.ErrorMessage;
+
 import java.util.HashMap;
 /**
  * Created by wuzusheng on 2018/3/9.
@@ -9,9 +12,9 @@ public class RequestResult extends HashMap<String,Object> {
         this.put("success",true);
     }
 
-    public RequestResult(String reeorMsg){
+    public RequestResult(BigdataException msg){
         this.put("success",false);
-        this.put("result",reeorMsg);
+        this.put("error",new ErrorMessage(msg));
     }
 
     public RequestResult(Object result) {
