@@ -22,6 +22,31 @@ public class SysUser implements UserDetails {
     private String password;
     @ManyToMany(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
     private List<SysRole>roles = new ArrayList<>();
+//账号是否停用
+    private boolean isEnabled = true;
+    private String email;
+    private Long phone;
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Long phone) {
+        this.phone = phone;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> auths = new ArrayList<>();
@@ -59,7 +84,7 @@ public class SysUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 
     public Long getId() {
