@@ -1,6 +1,7 @@
 package xyz.maxwells.bigdata.ctrl;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.maxwells.bigdata.domain.RequestResult;
@@ -10,6 +11,7 @@ import xyz.maxwells.bigdata.exception.BigdataException;
 /**
  * Created by wuzusheng on 2018/3/9.
  */
+@CrossOrigin
 @RestController
 public class UserLogin {
     @RequestMapping("/succeed")

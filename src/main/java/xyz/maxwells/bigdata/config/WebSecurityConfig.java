@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.web.cors.CorsUtils;
 import xyz.maxwells.bigdata.exception.RestAuthenticationAccessDeniedHandler;
 import xyz.maxwells.bigdata.exception.RestAuthenticationFailureHandler;
 import xyz.maxwells.bigdata.security.CustomUserService;
@@ -33,9 +34,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+//                .authorizeRequests()
                 .authorizeRequests()
-//                配置url需要的角色
-                .antMatchers("/*").permitAll()
+               .antMatchers("/*").permitAll()
+                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+
 //                .hasRole("USER")
                 .and()
                 .formLogin()

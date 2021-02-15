@@ -18,7 +18,9 @@ public class SysUser implements UserDetails {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(nullable = false,unique = true)
     private String username;
+    @Column(nullable = false)
     private String password;
     @ManyToMany(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
     private List<SysRole>roles = new ArrayList<>();

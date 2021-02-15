@@ -11,6 +11,9 @@ public class RequestResult extends HashMap<String,Object> {
     public RequestResult() {
         this.put("success",true);
     }
+    public RequestResult(Boolean res) {
+        this.put("success",res);
+    }
 
     public RequestResult(BigdataException msg){
         this.put("success",false);
