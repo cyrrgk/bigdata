@@ -23,4 +23,14 @@ public class SysUserServiceImpl implements SysUserService {
         }
         return dao.save(user)!=null;
     }
+
+    @Override
+    public SysUser findByName(String name) {
+        return dao.findByUsername(name);
+    }
+
+    @Override
+    public void update(SysUser user) throws BigdataException {
+        dao.save(user);
+    }
 }

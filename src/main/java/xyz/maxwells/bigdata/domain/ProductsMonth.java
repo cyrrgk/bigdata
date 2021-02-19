@@ -13,10 +13,10 @@ import javax.persistence.Id;
 public class ProductsMonth {
     @Id
     @Getter @Setter private String indicator;
-    @Getter @Setter private Long y2017s4;
-    @Getter @Setter private Long y2017s3;
-    @Getter @Setter private Long y2017s2;
-    @Getter @Setter private Long y2017s1;
-    @Getter @Setter private Long y2016s4;
     @Getter @Setter private Long y2016s3;
+    @Getter @Setter private Long y2016s4;
+    @Getter @Setter private Long y2017s1;
+    @Getter @Setter private Long y2017s2;
+    @Getter @Setter private Long y2017s3;
+    @Getter @Setter private Long y2017s4;
 }

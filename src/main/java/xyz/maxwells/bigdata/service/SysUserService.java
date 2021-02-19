@@ -8,4 +8,6 @@ import xyz.maxwells.bigdata.exception.BigdataException;
  */
 public interface SysUserService {
     Boolean save(SysUser user) throws BigdataException;
+    SysUser findByName(String name);
+    void update(SysUser user) throws BigdataException;
 }
