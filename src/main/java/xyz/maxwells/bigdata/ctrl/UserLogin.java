@@ -16,7 +16,11 @@ import xyz.maxwells.bigdata.exception.BigdataException;
 public class UserLogin {
     @RequestMapping("/succeed")
     public RequestResult succeed(){
-        return new RequestResult("登录成功");
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String){
+            return new RequestResult(new BigdataException("bigdata_01_006::尚未登录,无法获取当前用户"));
+        }
+        SysUser user = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return new RequestResult(user);
     }
     @RequestMapping("/login_page")
     public RequestResult loginPage() {

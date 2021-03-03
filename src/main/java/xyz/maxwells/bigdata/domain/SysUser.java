@@ -22,7 +22,7 @@ public class SysUser implements UserDetails {
     private String username;
     @Column(nullable = false)
     private String password;
-    @ManyToMany(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<SysRole>roles = new ArrayList<>();
 //账号是否停用
     private boolean isEnabled = true;
