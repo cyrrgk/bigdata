@@ -4,6 +4,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.maxwells.bigdata.aop.UserOperate;
 import xyz.maxwells.bigdata.domain.RequestResult;
 import xyz.maxwells.bigdata.domain.SysUser;
 import xyz.maxwells.bigdata.exception.BigdataException;
@@ -14,6 +15,7 @@ import xyz.maxwells.bigdata.exception.BigdataException;
 @CrossOrigin
 @RestController
 public class UserLogin {
+    @UserOperate(modelName = "用户操作模块",option = "登录")
     @RequestMapping("/succeed")
     public RequestResult succeed(){
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String){
@@ -26,6 +28,7 @@ public class UserLogin {
     public RequestResult loginPage() {
         return new RequestResult(new BigdataException("bigdata_01_005::尚未登录，请登录!"));
     }
+    @UserOperate(modelName = "用户操作模块",option = "注销")
     @RequestMapping("/logoutsucceed")
     public RequestResult logout(){
         return new RequestResult("注销成功");
@@ -41,8 +44,9 @@ public class UserLogin {
     }
 
     @RequestMapping("/test")
+    @UserOperate(option = "666")
     public String test() throws BigdataException{
-        throw new BigdataException("123::error");
-//        return "test!";
+//        throw new BigdataException("123::error");
+        return "test!";
     }
 }

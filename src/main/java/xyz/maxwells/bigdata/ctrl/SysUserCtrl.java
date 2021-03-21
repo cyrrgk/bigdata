@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.maxwells.bigdata.aop.UserOperate;
 import xyz.maxwells.bigdata.domain.*;
 import xyz.maxwells.bigdata.exception.BigdataException;
 import xyz.maxwells.bigdata.service.SysUserService;
@@ -46,6 +47,7 @@ public class SysUserCtrl {
         user.setPassword(null);
         return new RequestResult(user);
     }
+    @UserOperate(modelName = "用户操作模块",option = "修改密码")
     //修改个人密码
     @RequestMapping("/change")
     public RequestResult changePassword(String oldPass,String rePass)throws BigdataException{
@@ -62,6 +64,7 @@ public class SysUserCtrl {
         return new RequestResult();
     }
     //修改个人信息
+    @UserOperate(modelName = "用户操作模块",option = "修改个人信息")
     @RequestMapping("/updateown")
     public RequestResult updateOwnMsg(@Validated UserOwnMsgUpdate dto) throws BigdataException{
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String){
@@ -79,11 +82,13 @@ public class SysUserCtrl {
         return new RequestResult();
     }
     //查询所有用户
+    @UserOperate(modelName = "用户管理模块",option = "查询用户")
     @RequestMapping("/findall")
     public RequestResult findAll() throws BigdataException{
         return new RequestResult(service.findAll());
     }
     //修改用户信息
+    @UserOperate(modelName = "用户管理模块",option = "修改用户信息")
     @RequestMapping("/update")
     public RequestResult update(Long id,String username,String email,Long phone)throws BigdataException{
         SysUser sysUser = service.findOne(id);
@@ -98,11 +103,13 @@ public class SysUserCtrl {
         service.update(sysUser);
         return new RequestResult();
     }
+    @UserOperate(modelName = "用户管理模块",option = "查询用户信息")
     @RequestMapping("/list")
     public RequestResult list(UserFindAllDTO dto,VuePageable pageable){
         Page<SysUser> page = service.list(UserFindAllDTO.getSpecification(dto),pageable.getPageable());
         return new RequestResult(page);
     }
+    @UserOperate(modelName = "用户管理模块",option = "删除用户")
     @RequestMapping("/delete")
     public RequestResult delete(Long id){
         service.delete(id);

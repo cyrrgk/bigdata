@@ -3,6 +3,7 @@ package xyz.maxwells.bigdata.ctrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.maxwells.bigdata.aop.UserOperate;
 import xyz.maxwells.bigdata.domain.ChangePerssion;
 import xyz.maxwells.bigdata.domain.RequestResult;
 import xyz.maxwells.bigdata.domain.SysRole;
@@ -24,6 +25,7 @@ public class SysRoleCtrl {
     @Autowired
     private SysRoleService sysRoleService;
     //用户角色的分配
+    @UserOperate(modelName = "权限分配模块",option = "分配角色")
     @RequestMapping("/perssion")
     public RequestResult changePerssion(ChangePerssion perssion) throws BigdataException{
         SysUser user = sysUserService.findOne(perssion.getId());
