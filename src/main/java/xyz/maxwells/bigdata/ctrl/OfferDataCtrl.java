@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.maxwells.bigdata.domain.RequestResult;
 import xyz.maxwells.bigdata.service.CityConsumptionService;
+import xyz.maxwells.bigdata.service.NationalConsumptionService;
 import xyz.maxwells.bigdata.service.NationalFoodService;
 import xyz.maxwells.bigdata.service.RuralConsumptionService;
 
@@ -12,7 +13,9 @@ import xyz.maxwells.bigdata.service.RuralConsumptionService;
  * Created by wuzusheng on 2018/4/16.
  */
 @RestController
-public class OfferData {
+public class OfferDataCtrl {
+    @Autowired
+    private NationalConsumptionService nationalConsumptionService;
     @Autowired
     private NationalFoodService service;
     @Autowired
@@ -30,5 +33,9 @@ public class OfferData {
     @RequestMapping("/ruralconsumption")
     public RequestResult getRuralConsumptionData(){
         return new RequestResult(ruralConsumptionService.findAll());
+    }
+    @RequestMapping("/consumption/findall")
+    public RequestResult getNationalConsumptionData(){
+        return new RequestResult(nationalConsumptionService.findAll());
     }
 }

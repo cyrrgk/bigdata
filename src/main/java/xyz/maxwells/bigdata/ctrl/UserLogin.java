@@ -18,9 +18,11 @@ public class UserLogin {
     @UserOperate(modelName = "用户操作模块",option = "登录")
     @RequestMapping("/succeed")
     public RequestResult succeed(){
+        //判断是否登录成功
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String){
             return new RequestResult(new BigdataException("bigdata_01_006::尚未登录,无法获取当前用户"));
         }
+        //返回该用户信息
         SysUser user = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return new RequestResult(user);
     }

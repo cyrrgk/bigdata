@@ -29,6 +29,7 @@ public class SysUserCtrl {
         user.setPhone(dto.getPhone());
         SysRole role = new SysRole();
         role.setId(1L);
+        //默认用户角色为普通用户
         role.setName("ROLE_USER");
         user.getRoles().add(role);
         if (service.save(user)){
@@ -44,6 +45,9 @@ public class SysUserCtrl {
         }
         SysUser securityUser = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         SysUser user  = service.findByName(securityUser.getUsername());
+        if (user == null){
+            throw new BigdataException("bigdata_01_007::请重新登录，以获取最新用户信息");
+        }
         user.setPassword(null);
         return new RequestResult(user);
     }
@@ -72,6 +76,16 @@ public class SysUserCtrl {
         }
         SysUser securityUser = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         SysUser user  = service.findByName(securityUser.getUsername());
+        if (user == null){
+            throw new BigdataException("bigdata_01_007::请重新登录，以获取最新用户信息");
+        }
+        if (securityUser.getUsername().equals(dto.getName())){
+            user.setUsername(dto.getName());
+            user.setPhone(dto.getCellphone());
+            user.setEmail(dto.getEmail());
+            service.update(user);
+            return new RequestResult();
+        }else {
         if (service.findByName(dto.getName())!=null){
                 throw new BigdataException("bigdata_03_003::用户名重复");
         }
@@ -80,6 +94,7 @@ public class SysUserCtrl {
         user.setEmail(dto.getEmail());
         service.update(user);
         return new RequestResult();
+        }
     }
     //查询所有用户
     @UserOperate(modelName = "用户管理模块",option = "查询用户")
