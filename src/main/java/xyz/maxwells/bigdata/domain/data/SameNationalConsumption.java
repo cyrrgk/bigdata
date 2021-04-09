@@ -10,10 +10,10 @@ import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 
 /**
- * Created by wuzusheng on 2018/4/17.
+ * Created by wuzusheng on 2018/5/8.
  */
 @Entity
-public class CityConsumption {
+public class SameNationalConsumption {
     @Id
     @Getter
     @Setter
@@ -49,3 +49,4 @@ public class CityConsumption {
     @OneToOne
     @Getter @Setter private IndicatorExplain indicatorExplain;
 }
+

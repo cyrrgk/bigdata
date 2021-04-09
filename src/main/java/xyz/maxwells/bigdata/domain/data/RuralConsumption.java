@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 
 /**
@@ -43,4 +44,8 @@ public class RuralConsumption {
     @Getter @Setter private BigDecimal y2018m1;
     @Column(scale = 1)
     @Getter @Setter private BigDecimal y2018m2;
+    @OneToOne
+    @Getter @Setter private Analysis analysis;
+    @OneToOne
+    @Getter @Setter private IndicatorExplain indicatorExplain;
 }
